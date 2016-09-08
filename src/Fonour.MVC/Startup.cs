@@ -16,6 +16,7 @@ namespace Fonour.MVC
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -25,12 +26,22 @@ namespace Fonour.MVC
 
             if (env.IsDevelopment())
             {
+                //开发环境异常处理
                 app.UseDeveloperExceptionPage();
             }
-
-            app.Run(async (context) =>
+            else                     
             {
-                await context.Response.WriteAsync("Hello World!");
+                //生产环境异常处理
+                app.UseExceptionHandler("/Shared/Error");
+            }
+            //使用静态文件
+            app.UseStaticFiles();
+            //使用Mvc，设置默认路由
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
