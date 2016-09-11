@@ -36,12 +36,12 @@ namespace Fonour.MVC
             }
             //使用静态文件
             app.UseStaticFiles();
-            //使用Mvc，设置默认路由
+            //使用Mvc，设置默认路由为系统登录
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }
