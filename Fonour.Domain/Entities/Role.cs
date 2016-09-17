@@ -21,6 +21,6 @@ namespace Fonour.Domain.Entities
 
         public virtual ICollection<User> Users { get; set; }
 
-        public virtual ICollection<RoleMenuRelation> RoleMenuRelations { get; set; }
+        public virtual ICollection<Menu> Menus { get; set; }
     }
 }

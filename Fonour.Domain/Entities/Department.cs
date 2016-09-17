@@ -51,6 +51,11 @@ namespace Fonour.Domain.Entities
         public DateTime? CreateTime { get; set; }
 
         /// <summary>
+        /// 是否已删除
+        /// </summary>
+        public int IsDeleted { get; set; }
+
+        /// <summary>
         /// 包含用户
         /// </summary>
         public virtual ICollection<User> Users { get; set; }

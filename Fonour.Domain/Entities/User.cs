@@ -63,6 +63,11 @@ namespace Fonour.Domain.Entities
         public Guid DeptmentId { get; set; }
 
         /// <summary>
+        /// 是否已删除
+        /// </summary>
+        public int IsDeleted { get; set; }
+
+        /// <summary>
         /// 所属部门实体
         /// </summary>
         public virtual Department Department { get; set; }

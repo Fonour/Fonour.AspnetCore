@@ -36,9 +36,9 @@ namespace Fonour.Domain.Entities
         public string Url { get; set; }
 
         /// <summary>
-        /// 包含操作（新增/编辑/删除等操作，以逗号隔开存储）
+        /// 类型：0导航菜单；1操作按钮。
         /// </summary>
-        public string Actions { get; set; }
+        public int Type { get; set; }
 
         /// <summary>
         /// 菜单图标
