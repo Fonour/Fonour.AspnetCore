@@ -60,9 +60,5 @@ namespace Fonour.Domain.Entities
         /// </summary>
         public virtual ICollection<User> Users { get; set; }
 
-        /// <summary>
-        /// 创建人信息
-        /// </summary>
-        public virtual User CreateUser { get; set; }
     }
 }

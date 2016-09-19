@@ -20,11 +20,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.Domain", "03.Domain", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.Infrastructure", "04.Infrastructure", "{67619B5F-F27C-4022-BD75-DFE5C75D3A64}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Fonour.Domain", "Fonour.Domain\Fonour.Domain.xproj", "{BEED2F9E-3951-43E9-95E7-44C0F2E485E3}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Fonour.Domain", "src\Fonour.Domain\Fonour.Domain.xproj", "{BEED2F9E-3951-43E9-95E7-44C0F2E485E3}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Fonour.Application", "Fonour.Application\Fonour.Application.xproj", "{EB3E9353-2CF8-44C8-A999-9DE02DAF3567}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Fonour.Application", "src\Fonour.Application\Fonour.Application.xproj", "{EB3E9353-2CF8-44C8-A999-9DE02DAF3567}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Fonour.EntityFramworkCore", "Fonour.EntityFramworkCore\Fonour.EntityFramworkCore.xproj", "{54C4556A-6E3C-49C2-8D21-3C643DBCF8CF}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Fonour.EntityFrameworkCore", "src\Fonour.EntityFrameworkCore\Fonour.EntityFrameworkCore.xproj", "{54C4556A-6E3C-49C2-8D21-3C643DBCF8CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
