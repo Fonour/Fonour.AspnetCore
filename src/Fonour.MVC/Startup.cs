@@ -8,8 +8,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
-using Microsoft.EntityFrameworkCore;
 using Fonour.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Fonour.Application.UserApp;
+using Fonour.Domain.IRepositories;
+using Fonour.EntityFrameworkCore.Repositories;
 
 namespace Fonour.MVC
 {
@@ -33,10 +36,9 @@ namespace Fonour.MVC
             var sqlConnectionString = Configuration.GetConnectionString("Default");
 
             //添加数据上下文
-            services.AddDbContext<FonourDbContext>(options =>
-                options.UseNpgsql(sqlConnectionString)
-            );
-
+            services.AddDbContext<FonourDbContext>(options =>options.UseNpgsql(sqlConnectionString));
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserAppService, UserAppService>();
             services.AddMvc();
         }
 

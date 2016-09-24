@@ -1,0 +1,29 @@
+{
+  "name": "layer",
+  "main": "src/layer.js",
+  "homepage": "https://github.com/sentsin/layer",
+  "authors": [
+    "sentsin <xu@sentsin.com>"
+  ],
+  "description": "弹窗组件",
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "keywords": [
+    "layer",
+    "layui",
+    "dialog"
+  ],
+  "license": "LGPL",
+  "_release": "d2b1444037",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "d2b144403774e20fb526f835c059a0cc9d95516a"
+  },
+  "_source": "https://github.com/sentsin/layer.git",
+  "_target": "*",
+  "_originalSource": "layer",
+  "_direct": true
+}
