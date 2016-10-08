@@ -10,11 +10,15 @@
     "Microsoft.Extensions.Configuration": "1.0.0",
     "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0",
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
-    "Fonour.Application": "1.0.0-*"
+    "Fonour.Application": "1.0.0-*",
+    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
+    "Microsoft.AspNetCore.Session": "1.0.0",
+    "Fonour.Utility": "1.0.0-*"
   },
 
   "tools": {
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final",
+    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final"
   },
 
   "frameworks": {

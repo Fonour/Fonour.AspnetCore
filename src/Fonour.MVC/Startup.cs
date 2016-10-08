@@ -40,6 +40,7 @@ namespace Fonour.MVC
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserAppService, UserAppService>();
             services.AddMvc();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +60,8 @@ namespace Fonour.MVC
             }
             //使用静态文件
             app.UseStaticFiles();
+            //Session
+            app.UseSession();
             //使用Mvc，设置默认路由为系统登录
             app.UseMvc(routes =>
             {

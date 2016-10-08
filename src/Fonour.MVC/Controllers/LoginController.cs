@@ -4,6 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Fonour.Application.UserApp;
+using System.Collections.Specialized;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using Fonour.Utility.Convert;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,8 +23,12 @@ namespace Fonour.MVC.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var user = _userAppService.CheckUser("admin", "123456");
             return View();
         }
+        //[HttpPost]
+        //public IActionResult Index()
+        //{
+        //    return null;
+        //}
     }
 }
