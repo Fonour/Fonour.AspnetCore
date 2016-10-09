@@ -40,6 +40,7 @@ namespace Fonour.MVC
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserAppService, UserAppService>();
             services.AddMvc();
+            //Session服务
             services.AddSession();
         }
 
