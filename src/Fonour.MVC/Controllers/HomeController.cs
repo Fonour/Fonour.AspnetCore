@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Fonour.MVC.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : FonourControllerBase
     {
         // GET: /<controller>/
         public IActionResult Index()

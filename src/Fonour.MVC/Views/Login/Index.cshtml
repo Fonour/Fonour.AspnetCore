@@ -22,7 +22,7 @@
         <div class="login-box-body">
             <p class="login-box-msg">权限管理系统</p>
             <input id="errorInfo" type="hidden" value="@ViewBag.ErrorInfo" />
-            <form asp-controller="Login" asp-action="Index" method="post">
+            <form asp-controller="Login" asp-action="Index" method="post" onsubmit="onSubmit()">
                 <div class="form-group has-feedback">
                     <input asp-for="UserName" type="text" class="form-control" placeholder="用户名">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -58,10 +58,11 @@
     <script>
         $(function () {
             $('input').iCheck({
-                checkboxClass: 'icheckbox_square-blue',
+                 checkboxClass: 'icheckbox_square-blue',
                 radioClass: 'iradio_square-blue',
                 increaseArea: '20%' // optional
             });
+            
             //显示服务端验证的错误信息
             if ($("#errorInfo").val()) {
                 layer.tips($("#errorInfo").val(), "#btnLogin");
@@ -69,17 +70,27 @@
 
             //判断之前是否有设置cookie，如果有，则设置【记住我】选择框
             if ($.cookie("fonour_userName") != undefined) {
-                $("#RememberMe").attr("checked", true);
+                $("#RememberMe").attr("checked", "checked");
             }
             else {
-                $("#RememberMe").attr("checked", false);
+                $("#RememberMe").removeAttr("checked");
             }
             //读取cookie
             if ($("#RememberMe:checked").length > 0) {
-                $('#UserName').val($.cookie('fonour_userName'));
-                $('#PassWord').val($.cookie('fonour_password'));
+                $("#UserName").val($.cookie("fonour_userName"));
+                $("#Password").val($.cookie("fonour_password"));
             }
         });
+        //根据是否勾选记住我记录或清除cookie
+        function onSubmit() {
+            if ($("#RememberMe:checked").length > 0) {//设置cookie
+                $.cookie("fonour_userName", $("#UserName").val());
+                $.cookie("fonour_password", $("#Password").val());
+            } else {//清除cookie
+                $.removeCookie("fonour_userName");
+                $.removeCookie("fonour_password");
+            }
+        };
     </script>
 </body>
 </html>
