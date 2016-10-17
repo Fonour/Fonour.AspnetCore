@@ -44,7 +44,14 @@ namespace Fonour.MVC.Controllers
                 ViewBag.ErrorInfo = "用户名或密码错误。";
                 return View();
             }
-            ViewBag.ErrorInfo = ModelState.Values.First().Errors[0].ErrorMessage;
+            foreach (var item in ModelState.Values)
+            {
+                if (item.Errors.Count > 0)
+                {
+                    ViewBag.ErrorInfo = item.Errors[0].ErrorMessage;
+                    break;
+                }
+            }
             return View(model);
         }
     }

@@ -13,6 +13,9 @@ using Microsoft.EntityFrameworkCore;
 using Fonour.Application.UserApp;
 using Fonour.Domain.IRepositories;
 using Fonour.EntityFrameworkCore.Repositories;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Fonour.Application;
 
 namespace Fonour.MVC
 {
@@ -27,6 +30,8 @@ namespace Fonour.MVC
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+            //初始化映射关系
+            FonourMapper.Initialize();
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
@@ -36,7 +41,7 @@ namespace Fonour.MVC
             var sqlConnectionString = Configuration.GetConnectionString("Default");
 
             //添加数据上下文
-            services.AddDbContext<FonourDbContext>(options =>options.UseNpgsql(sqlConnectionString));
+            services.AddDbContext<FonourDbContext>(options => options.UseNpgsql(sqlConnectionString));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserAppService, UserAppService>();
             services.AddMvc();
@@ -61,6 +66,11 @@ namespace Fonour.MVC
             }
             //使用静态文件
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory())
+            });
+
             //Session
             app.UseSession();
             //使用Mvc，设置默认路由为系统登录

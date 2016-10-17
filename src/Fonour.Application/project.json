@@ -1,7 +1,8 @@
-﻿{
+{
   "version": "1.0.0-*",
 
   "dependencies": {
+    "AutoMapper": "5.1.1",
     "Fonour.EntityFrameworkCore": "1.0.0-*",
     "NETStandard.Library": "1.6.0"
   },

@@ -1,0 +1,40 @@
+﻿<div class="row">
+    <div class="col-md-3">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">功能管理</h3>
+            </div>
+            <div class="box-body">
+                <ul id="tree" class="ztree"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">功能列表</h3>
+                <div class="pull-right box-tools">
+                    <button id="btnAddRoot" class="btn btn-primary" type="button" data-original-title="新增顶级功能" data-toggle="tooltip" data-widget="">
+                        <i class="fa fa-plus-square"></i>&nbsp;&nbsp;新增顶级
+                    </button>
+                    <button title="" class="btn btn-primary" type="button" data-original-title="新增功能" data-toggle="tooltip" data-widget="">
+                        <i class="fa fa-plus-circle"></i>&nbsp;&nbsp;新增
+                    </button>
+                    <button title="" class="btn btn-danger" type="button" data-original-title="删除功能" data-toggle="tooltip" data-widget="">
+                        <i class="fa fa-times"></i>&nbsp;&nbsp;删除
+                    </button>
+                    <button title="" class="btn btn-info" type="button" data-original-title="加载顶级功能" data-toggle="tooltip" data-widget="">
+                        <i class="fa fa-list"></i>&nbsp;&nbsp;加载顶级
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                The body of the box
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("_Edit")
+@section scripts{
+    <script src="~/Views/Menu/Index.js"></script>
+}
