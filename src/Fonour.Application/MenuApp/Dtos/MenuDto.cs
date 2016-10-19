@@ -8,6 +8,8 @@ namespace Fonour.Application.MenuApp.Dtos
 {
     public class MenuDto
     {
+        public Guid Id { get; set; }
+
         /// <summary>
         /// 父级ID
         /// </summary>

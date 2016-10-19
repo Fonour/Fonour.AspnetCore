@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="~/css/AdminLTE.css">
     <!--皮肤-->
     <link rel="stylesheet" href="~/css/skins/skin-blue.css">
+    <link rel="stylesheet" href="~/lib/jstree/dist/themes/default/style.min.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -217,17 +218,17 @@
                     <li><a href="/Menu/Index"><i class="fa fa-link"></i> <span>功能管理</span></a></li>
                     <li><a href="#"><i class="fa fa-link"></i> <span>权限管理</span></a></li>
                     @*<li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-link"></i> <span>Multilevel</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#">Link in level 2</a></li>
-                            <li><a href="#">Link in level 2</a></li>
-                        </ul>
-                    </li>*@
+                            <a href="#">
+                                <i class="fa fa-link"></i> <span>Multilevel</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#">Link in level 2</a></li>
+                                <li><a href="#">Link in level 2</a></li>
+                            </ul>
+                        </li>*@
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>
@@ -337,6 +338,8 @@
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/js/app.js"></script>
+    <script src="~/lib/layer/layer.js"></script>
+    <script src="~/lib/jstree/dist/jstree.js"></script>
     @RenderSection("scripts", false)
 </body>
 </html>

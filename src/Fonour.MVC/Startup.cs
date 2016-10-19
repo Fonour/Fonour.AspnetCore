@@ -16,6 +16,7 @@ using Fonour.EntityFrameworkCore.Repositories;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Fonour.Application;
+using Fonour.Application.MenuApp;
 
 namespace Fonour.MVC
 {
@@ -42,8 +43,11 @@ namespace Fonour.MVC
 
             //添加数据上下文
             services.AddDbContext<FonourDbContext>(options => options.UseNpgsql(sqlConnectionString));
+            //依赖注入
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserAppService, UserAppService>();
+            services.AddScoped<IMenuRepository, MenuRepository>();
+            services.AddScoped<IMenuAppService, MenuAppService>();
             services.AddMvc();
             //Session服务
             services.AddSession();

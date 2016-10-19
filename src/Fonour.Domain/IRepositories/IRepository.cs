@@ -51,32 +51,40 @@ namespace Fonour.Domain.IRepositories
         /// 新增实体
         /// </summary>
         /// <param name="entity">实体</param>
+        /// <param name="autoSave">是否立即执行保存</param>
         /// <returns></returns>
-        TEntity Insert(TEntity entity);
+        TEntity Insert(TEntity entity, bool autoSave = true);
 
         /// <summary>
         /// 更新实体
         /// </summary>
         /// <param name="entity">实体</param>
-        TEntity Update(TEntity entity);
+        /// <param name="autoSave">是否立即执行保存</param>
+        TEntity Update(TEntity entity, bool autoSave = true);
 
         /// <summary>
         /// 新增或更新实体
         /// </summary>
         /// <param name="entity">实体</param>
-        TEntity InsertOrUpdate(TEntity entity);
+        /// <param name="autoSave">是否立即执行保存</param>
+        TEntity InsertOrUpdate(TEntity entity, bool autoSave = true);
 
         /// <summary>
         /// 删除实体
         /// </summary>
         /// <param name="entity">要删除的实体</param>
-        void Delete(TEntity entity);
+        /// <param name="autoSave">是否立即执行保存</param>
+        void Delete(TEntity entity, bool autoSave = true);
 
         /// <summary>
         /// 删除实体
         /// </summary>
         /// <param name="id">实体主键</param>
-        void Delete(TPrimaryKey id);
+        /// <param name="autoSave">是否立即执行保存</param>
+        void Delete(TPrimaryKey id, bool autoSave = true);
+
+        void Save();
+
     }
 
     /// <summary>

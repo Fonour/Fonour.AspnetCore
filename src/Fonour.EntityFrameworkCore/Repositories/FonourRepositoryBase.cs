@@ -71,10 +71,13 @@ namespace Fonour.EntityFrameworkCore.Repositories
         /// 新增实体
         /// </summary>
         /// <param name="entity">实体</param>
+        /// <param name="autoSave">是否立即执行保存</param>
         /// <returns></returns>
-        public TEntity Insert(TEntity entity)
+        public TEntity Insert(TEntity entity, bool autoSave = true)
         {
             _dbContext.Set<TEntity>().Add(entity);
+            if (autoSave)
+                Save();
             return entity;
         }
 
@@ -82,10 +85,13 @@ namespace Fonour.EntityFrameworkCore.Repositories
         /// 更新实体
         /// </summary>
         /// <param name="entity">实体</param>
-        public TEntity Update(TEntity entity)
+        /// <param name="autoSave">是否立即执行保存</param>
+        public TEntity Update(TEntity entity, bool autoSave = true)
         {
             _dbContext.Set<TEntity>().Attach(entity);
             _dbContext.Entry(entity).State = EntityState.Modified;
+            if (autoSave)
+                Save();
             return entity;
         }
 
@@ -93,29 +99,36 @@ namespace Fonour.EntityFrameworkCore.Repositories
         /// 新增或更新实体
         /// </summary>
         /// <param name="entity">实体</param>
-        public TEntity InsertOrUpdate(TEntity entity)
+        /// <param name="autoSave">是否立即执行保存</param>
+        public TEntity InsertOrUpdate(TEntity entity, bool autoSave = true)
         {
             if (Get(entity.Id) != null)
-                return Update(entity);
-            return Insert(entity);
+                return Update(entity, autoSave);
+            return Insert(entity, autoSave);
         }
 
         /// <summary>
         /// 删除实体
         /// </summary>
         /// <param name="entity">要删除的实体</param>
-        public void Delete(TEntity entity)
+        /// <param name="autoSave">是否立即执行保存</param>
+        public void Delete(TEntity entity, bool autoSave = true)
         {
             _dbContext.Set<TEntity>().Remove(entity);
+            if (autoSave)
+                Save();
         }
 
         /// <summary>
         /// 删除实体
         /// </summary>
         /// <param name="id">实体主键</param>
-        public void Delete(TPrimaryKey id)
+        /// <param name="autoSave">是否立即执行保存</param>
+        public void Delete(TPrimaryKey id, bool autoSave = true)
         {
             _dbContext.Set<TEntity>().Remove(Get(id));
+            if (autoSave)
+                Save();
         }
 
         /// <summary>

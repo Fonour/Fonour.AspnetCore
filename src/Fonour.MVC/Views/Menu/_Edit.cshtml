@@ -2,29 +2,31 @@
     <div class="modal-dialog">
         <div class="box box-info">
             <div class="box-header with-border">
-                <h5 class="box-title">新增</h5>
+                <h5 class="box-title" id="Title"></h5>
                 <button class="close" aria-label="Close" type="button" data-dismiss="modal">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <form class="form-horizontal">
+                <input type="hidden" id="Id" />
+                <input type="hidden" id="ParentId" />
                 <div class="box-body">
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="">功能名称</label>
                         <div class="col-sm-10">
-                            <input class="form-control" id="" type="text" placeholder="功能名称">
+                            <input class="form-control" id="Name" type="text" placeholder="功能名称">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="inputPassword3">功能编码</label>
                         <div class="col-sm-10">
-                            <input class="form-control" id="" type="text" placeholder="功能编码">
+                            <input class="form-control" id="Code" type="text" placeholder="功能编码">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="inputPassword3">功能类型</label>
                         <div class="col-sm-10">
-                            <select class="form-control">
+                            <select class="form-control" id="Type">
                                 <option value="0">功能菜单</option>
                                 <option value="1">操作按钮</option>
                             </select>
@@ -33,25 +35,25 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="">链接地址</label>
                         <div class="col-sm-10">
-                            <input class="form-control" id="" type="text" placeholder="链接地址">
+                            <input class="form-control" id="Url" type="text" placeholder="链接地址">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="">功能图标</label>
                         <div class="col-sm-10">
-                            <input class="form-control" id="" type="text" placeholder="功能图标">
+                            <input class="form-control" id="Icon" type="text" placeholder="功能图标">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="">功能序号</label>
                         <div class="col-sm-10">
-                            <input class="form-control" id="" type="text" placeholder="功能序号">
+                            <input class="form-control" id="SerialNumber" type="text" placeholder="功能序号">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="">功能描述</label>
                         <div class="col-sm-10">
-                            <textarea id="" class="form-control" rows="3"></textarea>
+                            <textarea id="Remarks" class="form-control" rows="3"></textarea>
                         </div>
                     </div>
                 </div>

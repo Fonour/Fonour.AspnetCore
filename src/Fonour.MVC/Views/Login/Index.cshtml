@@ -58,11 +58,11 @@
     <script>
         $(function () {
             $('input').iCheck({
-                 checkboxClass: 'icheckbox_square-blue',
+                checkboxClass: 'icheckbox_square-blue',
                 radioClass: 'iradio_square-blue',
                 increaseArea: '20%' // optional
             });
-            
+
             //显示服务端验证的错误信息
             if ($("#errorInfo").val()) {
                 layer.tips($("#errorInfo").val(), "#btnLogin");
