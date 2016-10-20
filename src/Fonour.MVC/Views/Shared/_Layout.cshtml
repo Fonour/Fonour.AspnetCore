@@ -237,7 +237,7 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
+            @*<section class="content-header">
                 <h1>
                     Page Header
                     <small>Optional description</small>
@@ -246,7 +246,7 @@
                     <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
                     <li class="active">Here</li>
                 </ol>
-            </section>
+            </section>*@
             <!-- Main content -->
             <section class="content">
                 <!--当创建基于_Layout.cshtml布局页面的视图时，视图的内容会和布局页面合并，视图的内容会渲染呈现在@RenderBody()处-->
@@ -338,6 +338,7 @@
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/js/app.js"></script>
+    <script src="~/js/bootstrap-paginator.js"></script>
     <script src="~/lib/layer/layer.js"></script>
     <script src="~/lib/jstree/dist/jstree.js"></script>
     @RenderSection("scripts", false)

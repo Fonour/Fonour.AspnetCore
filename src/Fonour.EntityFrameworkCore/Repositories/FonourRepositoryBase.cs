@@ -1,10 +1,12 @@
 ﻿using Fonour.Domain;
 using Fonour.Domain.IRepositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Fonour.EntityFrameworkCore.Repositories
@@ -88,13 +90,19 @@ namespace Fonour.EntityFrameworkCore.Repositories
         /// <param name="autoSave">是否立即执行保存</param>
         public TEntity Update(TEntity entity, bool autoSave = true)
         {
-            _dbContext.Set<TEntity>().Attach(entity);
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            var obj = Get(entity.Id);
+            EntityToEntity(entity, obj);
             if (autoSave)
                 Save();
             return entity;
         }
-
+        private void EntityToEntity<T>(T pTargetObjSrc, T pTargetObjDest)
+        {
+            foreach (var mItem in typeof(T).GetProperties())
+            {
+                mItem.SetValue(pTargetObjDest, mItem.GetValue(pTargetObjSrc, new object[] { }), null);
+            }
+        }
         /// <summary>
         /// 新增或更新实体
         /// </summary>
@@ -129,6 +137,35 @@ namespace Fonour.EntityFrameworkCore.Repositories
             _dbContext.Set<TEntity>().Remove(Get(id));
             if (autoSave)
                 Save();
+        }
+
+        public void Delete(Expression<Func<TEntity, bool>> where, bool autoSave = true)
+        {
+            _dbContext.Set<TEntity>().Where(where).ToList().ForEach(it => _dbContext.Set<TEntity>().Remove(it));
+            if (autoSave)
+                Save();
+        }
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="startPage">页码</param>
+        /// <param name="pageSize">单页数据数</param>
+        /// <param name="rowCount">行数</param>
+        /// <param name="where">条件</param>
+        /// <param name="order">排序</param>
+        /// <returns></returns>
+        public IQueryable<TEntity> LoadPageList(int startPage, int pageSize, out int rowCount, Expression<Func<TEntity, bool>> where = null, Expression<Func<TEntity, object>> order = null)
+        {
+            var result = from p in _dbContext.Set<TEntity>()
+                         select p;
+            if (where != null)
+                result = result.Where(where);
+            if (order != null)
+                result = result.OrderBy(order);
+            else
+                result = result.OrderBy(m => m.Id);
+            rowCount = result.Count();
+            return result.Skip((startPage - 1) * pageSize).Take(pageSize);
         }
 
         /// <summary>

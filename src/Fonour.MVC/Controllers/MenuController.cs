@@ -27,6 +27,10 @@ namespace Fonour.MVC.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// 获取功能树JSON数据
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetMenuTreeData()
         {
@@ -38,7 +42,26 @@ namespace Fonour.MVC.Controllers
             }
             return Json(treeModels);
         }
-
+        /// <summary>
+        /// 获取子级功能列表
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult GetMneusByParent(Guid parentId, int startPage, int pageSize)
+        {
+            int rowCount = 0;
+            var result = _menuAppService.GetMneusByParent(parentId, startPage, pageSize, out rowCount);
+            return Json(new
+            {
+                rowCount = rowCount,
+                pageCount = Math.Ceiling(Convert.ToDecimal(rowCount) / pageSize),
+                rows = result,
+            });
+        }
+        /// <summary>
+        /// 新增或编辑功能
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         public IActionResult Edit(MenuDto dto)
         {
             if (!ModelState.IsValid)
@@ -49,11 +72,61 @@ namespace Fonour.MVC.Controllers
                     Message = GetModelStateError()
                 });
             }
-            _menuAppService.InsertOrUpdate(dto);
-            return Json(new
+            if (_menuAppService.InsertOrUpdate(dto))
             {
-                Result = "Success"
-            });
+                return Json(new { Result = "Success" });
+            }
+            return Json(new { Result = "Faild" });
+        }
+
+        public IActionResult DeleteMuti(string ids)
+        {
+            try
+            {
+                string[] idArray = ids.Split(',');
+                List<Guid> delIds = new List<Guid>();
+                foreach (string id in idArray)
+                {
+                    delIds.Add(Guid.Parse(id));
+                }
+                _menuAppService.DeleteBatch(delIds);
+                return Json(new
+                {
+                    Result = "Success"
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    Result = "Faild",
+                    Message = ex.Message
+                });
+            }
+        }
+        public IActionResult Delete(Guid id)
+        {
+            try
+            {
+                _menuAppService.Delete(id);
+                return Json(new
+                {
+                    Result = "Success"
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    Result = "Faild",
+                    Message = ex.Message
+                });
+            }
+        }
+        public ActionResult Get(Guid id)
+        {
+            var dto = _menuAppService.Get(id);
+            return Json(dto);
         }
     }
 }

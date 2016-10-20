@@ -83,6 +83,10 @@ namespace Fonour.Domain.IRepositories
         /// <param name="autoSave">是否立即执行保存</param>
         void Delete(TPrimaryKey id, bool autoSave = true);
 
+        void Delete(Expression<Func<TEntity, bool>> where, bool autoSave = true);
+
+        IQueryable<TEntity> LoadPageList(int startPage, int pageSize, out int rowCount, Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, object>> order);
+
         void Save();
 
     }

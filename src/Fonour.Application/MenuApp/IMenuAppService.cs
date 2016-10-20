@@ -10,6 +10,14 @@ namespace Fonour.Application.MenuApp
     {
         List<MenuDto> GetAllList();
 
+        List<MenuDto> GetMneusByParent(Guid parentId, int startPage, int pageSize, out int rowCount);
+
         bool InsertOrUpdate(MenuDto dto);
+
+        void DeleteBatch(List<Guid> ids);
+
+        void Delete(Guid id);
+
+        MenuDto  Get(Guid id);
     }
 }
