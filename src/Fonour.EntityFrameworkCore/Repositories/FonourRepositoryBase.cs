@@ -139,6 +139,11 @@ namespace Fonour.EntityFrameworkCore.Repositories
                 Save();
         }
 
+        /// <summary>
+        /// 根据条件删除实体
+        /// </summary>
+        /// <param name="where">lambda表达式</param>
+        /// <param name="autoSave">是否自动保存</param>
         public void Delete(Expression<Func<TEntity, bool>> where, bool autoSave = true)
         {
             _dbContext.Set<TEntity>().Where(where).ToList().ForEach(it => _dbContext.Set<TEntity>().Remove(it));

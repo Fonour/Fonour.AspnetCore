@@ -16,20 +16,20 @@ function initTree() {
     $.jstree.destroy();
     $.ajax({
         type: "Get",
-        url: "/Menu/GetMenuTreeData",
+        url: "/Menu/GetMenuTreeData",    //获取数据的ajax请求地址
         success: function (data) {
-            $('#treeDiv').jstree({
+            $('#treeDiv').jstree({       //创建JsTtree
                 'core': {
-                    'data': data,
-                    "multiple": false
+                    'data': data,        //绑定JsTree数据
+                    "multiple": false    //是否多选
                 },
-                "plugins": ["state", "types", "wholerow"]
+                "plugins": ["state", "types", "wholerow"]  //配置信息
             })
-            $("#treeDiv").on("ready.jstree", function (e, data) {
-                data.instance.open_all();
+            $("#treeDiv").on("ready.jstree", function (e, data) {   //树创建完成事件
+                data.instance.open_all();    //展开所有节点
             });
-            $("#treeDiv").on('changed.jstree', function (e, data) {
-                var node = data.instance.get_node(data.selected[0]);
+            $("#treeDiv").on('changed.jstree', function (e, data) {   //选中节点改变事件
+                var node = data.instance.get_node(data.selected[0]);  //获取选中的节点
                 if (node) {
                     selectedMenuId = node.id;
                     loadTables(1, 10);
@@ -59,18 +59,18 @@ function loadTables(startPage, pageSize) {
                 tr += "</tr>";
                 $("#tableBody").append(tr);
             })
-            var elment = $("#grid_paging_part");
+            var elment = $("#grid_paging_part"); //分页插件的容器id
             if (data.rowCount > 0) {
-                var options = {
+                var options = { //分页插件配置项
                     bootstrapMajorVersion: 3,
-                    currentPage: page,
-                    numberOfPages: data.rowsCount,
-                    totalPages: data.pageCount,
-                    onPageChanged: function (event, oldPage, newPage) {
+                    currentPage: page, //当前页
+                    numberOfPages: data.rowsCount, //总数
+                    totalPages: data.pageCount, //总页数
+                    onPageChanged: function (event, oldPage, newPage) { //页面切换事件
                         loadTables(newPage);
                     }
                 }
-                elment.bootstrapPaginator(options);
+                elment.bootstrapPaginator(options); //分页插件初始化
             }
         }
     })

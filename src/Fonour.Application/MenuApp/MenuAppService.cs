@@ -20,6 +20,7 @@ namespace Fonour.Application.MenuApp
         public List<MenuDto> GetAllList()
         {
             var menus = _menuRepository.GetAllList().OrderBy(it=>it.SerialNumber);
+            //使用AutoMapper进行实体转换
             return Mapper.Map<List<MenuDto>>(menus);
         }
 
