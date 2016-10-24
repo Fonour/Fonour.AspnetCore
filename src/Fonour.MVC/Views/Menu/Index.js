@@ -45,7 +45,7 @@ function loadTables(startPage, pageSize) {
     $("#checkAll").prop("checked", false);
     $.ajax({
         type: "GET",
-        url: "/Menu/GetMneusByParent?startPage=" + startPage + "&pageSize=" + pageSize + "&parentId=" + selectedMenuId + "&_t=" + new Date(),
+        url: "/Menu/GetMneusByParent?startPage=" + startPage + "&pageSize=" + pageSize + "&parentId=" + selectedMenuId,
         success: function (data) {
             $.each(data.rows, function (i, item) {
                 var tr = "<tr>";
@@ -63,11 +63,11 @@ function loadTables(startPage, pageSize) {
             if (data.rowCount > 0) {
                 var options = { //分页插件配置项
                     bootstrapMajorVersion: 3,
-                    currentPage: page, //当前页
+                    currentPage: startPage, //当前页
                     numberOfPages: data.rowsCount, //总数
                     totalPages: data.pageCount, //总页数
                     onPageChanged: function (event, oldPage, newPage) { //页面切换事件
-                        loadTables(newPage);
+                        loadTables(newPage, pageSize);
                     }
                 }
                 elment.bootstrapPaginator(options); //分页插件初始化
