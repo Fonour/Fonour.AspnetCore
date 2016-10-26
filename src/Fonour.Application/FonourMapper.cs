@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Fonour.Application.DepartmentApp.Dtos;
 using Fonour.Application.MenuApp.Dtos;
 using Fonour.Domain.Entities;
 using System;
@@ -19,6 +20,8 @@ namespace Fonour.Application
             {
                 cfg.CreateMap<Menu, MenuDto>();
                 cfg.CreateMap<MenuDto, Menu>();
+                cfg.CreateMap<Department, DepartmentDto>();
+                cfg.CreateMap<DepartmentDto, Department>();
             });
         }
     }

@@ -17,6 +17,7 @@ using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Fonour.Application;
 using Fonour.Application.MenuApp;
+using Fonour.Application.DepartmentApp;
 
 namespace Fonour.MVC
 {
@@ -48,6 +49,8 @@ namespace Fonour.MVC
             services.AddScoped<IUserAppService, UserAppService>();
             services.AddScoped<IMenuRepository, MenuRepository>();
             services.AddScoped<IMenuAppService, MenuAppService>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IDepartmentAppService, DepartmentAppService>();
             services.AddMvc();
             //Session服务
             services.AddSession();
