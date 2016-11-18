@@ -113,14 +113,15 @@ function add(type) {
 function edit(id) {
     $.ajax({
         type: "Get",
-        url: "/Menu/Get?id=" + id + "&_t=" + new Date(),
+        url: "/Department/Get?id=" + id + "&_t=" + new Date().getTime(),
         success: function (data) {
             $("#Id").val(data.id);
             $("#ParentId").val(data.parentId);
             $("#Name").val(data.name);
+            $("#Code").val(data.code);
             $("#Manager").val(data.manager);
             $("#ContactNumber").val(data.contactNumber);
-            $("#Remarks").val("");
+            $("#Remarks").val(data.remarks);
 
             $("#Title").text("编辑功能")
             $("#addRootModal").modal("show");

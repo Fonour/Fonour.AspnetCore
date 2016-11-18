@@ -18,6 +18,7 @@ using System.IO;
 using Fonour.Application;
 using Fonour.Application.MenuApp;
 using Fonour.Application.DepartmentApp;
+using Fonour.Application.RoleApp;
 
 namespace Fonour.MVC
 {
@@ -51,6 +52,8 @@ namespace Fonour.MVC
             services.AddScoped<IMenuAppService, MenuAppService>();
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IDepartmentAppService, DepartmentAppService>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IRoleAppService, RoleAppService>();
             services.AddMvc();
             //Session服务
             services.AddSession();

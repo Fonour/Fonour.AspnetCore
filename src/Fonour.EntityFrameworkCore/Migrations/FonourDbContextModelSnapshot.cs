@@ -14,7 +14,7 @@ namespace Fonour.EntityFrameworkCore.Migrations
         {
             modelBuilder
                 .HasAnnotation("Npgsql:PostgresExtension:.uuid-ossp", "'uuid-ossp', '', ''")
-                .HasAnnotation("ProductVersion", "1.0.0-rtm-21431");
+                .HasAnnotation("ProductVersion", "1.0.1");
 
             modelBuilder.Entity("Fonour.Domain.Entities.Department", b =>
                 {
@@ -96,13 +96,11 @@ namespace Fonour.EntityFrameworkCore.Migrations
 
                     b.Property<Guid>("MenuId");
 
-                    b.Property<Guid?>("MenuId1");
-
                     b.HasKey("RoleId", "MenuId");
 
                     b.HasIndex("MenuId");
 
-                    b.HasIndex("MenuId1");
+                    b.HasIndex("RoleId");
 
                     b.ToTable("RoleMenus");
                 });
@@ -160,14 +158,15 @@ namespace Fonour.EntityFrameworkCore.Migrations
 
             modelBuilder.Entity("Fonour.Domain.Entities.RoleMenu", b =>
                 {
-                    b.HasOne("Fonour.Domain.Entities.Role", "Role")
-                        .WithMany("RoleMenus")
+                    b.HasOne("Fonour.Domain.Entities.Menu", "Menu")
+                        .WithMany()
                         .HasForeignKey("MenuId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Fonour.Domain.Entities.Menu", "Menu")
-                        .WithMany()
-                        .HasForeignKey("MenuId1");
+                    b.HasOne("Fonour.Domain.Entities.Role", "Role")
+                        .WithMany("RoleMenus")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Fonour.Domain.Entities.User", b =>

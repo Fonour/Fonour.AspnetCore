@@ -120,7 +120,7 @@ namespace Fonour.MVC.Controllers
                 });
             }
         }
-        public ActionResult Get(Guid id)
+        public IActionResult Get(Guid id)
         {
             var dto = _service.Get(id);
             return Json(dto);

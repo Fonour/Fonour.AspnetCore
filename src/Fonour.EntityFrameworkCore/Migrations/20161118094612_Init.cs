@@ -8,7 +8,7 @@ namespace Fonour.EntityFrameworkCore.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreatePostgresExtension("uuid-ossp");
+            migrationBuilder.EnsurePostgresExtension("uuid-ossp");
 
             migrationBuilder.CreateTable(
                 name: "Departments",
@@ -103,24 +103,23 @@ namespace Fonour.EntityFrameworkCore.Migrations
                 columns: table => new
                 {
                     RoleId = table.Column<Guid>(nullable: false),
-                    MenuId = table.Column<Guid>(nullable: false),
-                    MenuId1 = table.Column<Guid>(nullable: true)
+                    MenuId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RoleMenus", x => new { x.RoleId, x.MenuId });
                     table.ForeignKey(
-                        name: "FK_RoleMenus_Roles_MenuId",
+                        name: "FK_RoleMenus_Menus_MenuId",
                         column: x => x.MenuId,
-                        principalTable: "Roles",
+                        principalTable: "Menus",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RoleMenus_Menus_MenuId1",
-                        column: x => x.MenuId1,
-                        principalTable: "Menus",
+                        name: "FK_RoleMenus_Roles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Roles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -153,9 +152,9 @@ namespace Fonour.EntityFrameworkCore.Migrations
                 column: "MenuId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RoleMenus_MenuId1",
+                name: "IX_RoleMenus_RoleId",
                 table: "RoleMenus",
-                column: "MenuId1");
+                column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_DepartmentId",
@@ -175,8 +174,6 @@ namespace Fonour.EntityFrameworkCore.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropPostgresExtension("uuid-ossp");
-
             migrationBuilder.DropTable(
                 name: "RoleMenus");
 

@@ -30,10 +30,6 @@ namespace Fonour.EntityFrameworkCore
             //RoleMenu关联配置
             builder.Entity<RoleMenu>()
               .HasKey(rm => new { rm.RoleId, rm.MenuId });
-            builder.Entity<RoleMenu>()
-              .HasOne(rm => rm.Role)
-              .WithMany(r => r.RoleMenus)
-              .HasForeignKey(rm => rm.RoleId).HasForeignKey(rm => rm.MenuId);
 
             //启用Guid主键类型扩展
             builder.HasPostgresExtension("uuid-ossp");

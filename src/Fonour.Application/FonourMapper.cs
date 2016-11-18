@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Fonour.Application.DepartmentApp.Dtos;
 using Fonour.Application.MenuApp.Dtos;
+using Fonour.Application.RoleApp.Dtos;
 using Fonour.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,8 @@ namespace Fonour.Application
                 cfg.CreateMap<MenuDto, Menu>();
                 cfg.CreateMap<Department, DepartmentDto>();
                 cfg.CreateMap<DepartmentDto, Department>();
+                cfg.CreateMap<RoleDto, Role>();
+                cfg.CreateMap<Role, RoleDto>();
             });
         }
     }
