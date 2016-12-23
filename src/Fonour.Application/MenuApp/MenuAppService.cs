@@ -24,7 +24,7 @@ namespace Fonour.Application.MenuApp
             return Mapper.Map<List<MenuDto>>(menus);
         }
 
-        public List<MenuDto> GetMneusByParent(Guid parentId, int startPage, int pageSize, out int rowCount)
+        public List<MenuDto> GetMenusByParent(Guid parentId, int startPage, int pageSize, out int rowCount)
         {
             var menus = _menuRepository.LoadPageList(startPage, pageSize, out rowCount, it => it.ParentId == parentId, it => it.SerialNumber);
             return Mapper.Map<List<MenuDto>>(menus);

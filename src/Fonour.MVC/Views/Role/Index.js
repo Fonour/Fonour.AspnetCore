@@ -67,6 +67,7 @@ function loadTables(startPage, pageSize) {
                 $("table > tbody > tr").removeAttr("style")
                 $(this).attr("style", "background-color:#beebff");
                 selectedRole = $(this).find("input").val();
+                loadPermissionByRole(selectedRole);
             });
         }
     })
@@ -181,7 +182,7 @@ function deleteSingle(id) {
         })
     });
 };
-
+//保存角色权限关联关系
 function savePermission() {
     if (selectedRole == 0) {
         layer.alert("请选择角色。");
@@ -192,17 +193,32 @@ function savePermission() {
     $.each(checkedMenu, function (i, item) {
         permissions.push({ "RoleId": selectedRole, "MenuId": item.id });
     })
-    //$.ajax({
-    //    type: "POST",
-    //    url: "/Permission/SavePermission",
-    //    data: { userId: selectedUser, menuIds: selectedMenus.join(","), departmentIds: $("#departmentTree").jstree('get_selected').join(","), projectIds: $("#projectTree").jstree('get_selected').join(",") },
-    //    success: function (data) {
-    //        if (data.result = true) {
-    //            layer.alert("删除失败！");
-    //        }
-    //        else {
-    //            layer.alert("删除失败！");
-    //        }
-    //    }
-    //})
+    $.ajax({
+        type: "POST",
+        url: "/Role/SavePermission",
+        data: { "roleId": selectedRole, "roleMenus": permissions },
+        success: function (data) {
+            if (data.result = true) {
+                layer.alert("保存成功！");
+            }
+            else {
+                layer.alert("保存失败！");
+            }
+        }
+    })
+};
+//根据选中角色加载功能权限
+function loadPermissionByRole(selectedRole) {
+    $.ajax({
+        type: "Get",
+        url: "/Role/GetMenusByRole?roleId=" + selectedRole + "&_t=" + new Date().getTime(),
+        success: function (data) {
+            $("#treeDiv").find("li").each(function () {
+                $("#treeDiv").jstree("uncheck_node", $(this));
+                if (data.indexOf($(this).attr("id")) != -1) {
+                    $("#treeDiv").jstree("check_node", $(this));
+                }
+            })
+        }
+    });
 };

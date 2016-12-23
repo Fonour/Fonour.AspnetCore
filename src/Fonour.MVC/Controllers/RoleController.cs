@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Fonour.Application.RoleApp.Dtos;
 using Fonour.Application.RoleApp;
+using Fonour.MVC.Models;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -108,6 +109,25 @@ namespace Fonour.MVC.Controllers
         {
             var dto = _service.Get(id);
             return Json(dto);
+        }
+
+        /// <summary>
+        /// 根据角色获取权限
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult GetMenusByRole(Guid roleId)
+        {
+            var dtos = _service.GetAllMenuListByRole(roleId);
+            return Json(dtos);
+        }
+
+        public IActionResult SavePermission(Guid roleId, List<RoleMenuDto> roleMenus)
+        {
+            if (_service.UpdateRoleMenu(roleId, roleMenus))
+            {
+                return Json(new { Result = "Success" });
+            }
+            return Json(new { Result = "Faild" });
         }
     }
 }

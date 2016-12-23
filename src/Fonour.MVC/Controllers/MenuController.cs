@@ -49,7 +49,7 @@ namespace Fonour.MVC.Controllers
         public IActionResult GetMneusByParent(Guid parentId, int startPage, int pageSize)
         {
             int rowCount = 0;
-            var result = _menuAppService.GetMneusByParent(parentId, startPage, pageSize, out rowCount);
+            var result = _menuAppService.GetMenusByParent(parentId, startPage, pageSize, out rowCount);
             return Json(new
             {
                 rowCount = rowCount,

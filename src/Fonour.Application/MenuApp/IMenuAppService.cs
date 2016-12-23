@@ -22,7 +22,7 @@ namespace Fonour.Application.MenuApp
         /// <param name="pageSize">页面大小</param>
         /// <param name="rowCount">数据总数</param>
         /// <returns></returns>
-        List<MenuDto> GetMneusByParent(Guid parentId, int startPage, int pageSize, out int rowCount);
+        List<MenuDto> GetMenusByParent(Guid parentId, int startPage, int pageSize, out int rowCount);
 
         /// <summary>
         /// 新增或修改功能

@@ -25,6 +25,8 @@ namespace Fonour.Application
                 cfg.CreateMap<DepartmentDto, Department>();
                 cfg.CreateMap<RoleDto, Role>();
                 cfg.CreateMap<Role, RoleDto>();
+                cfg.CreateMap<RoleMenuDto, RoleMenu>();
+                cfg.CreateMap<RoleMenu, RoleMenuDto>();
             });
         }
     }
