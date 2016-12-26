@@ -2,6 +2,7 @@
 using Fonour.Application.DepartmentApp.Dtos;
 using Fonour.Application.MenuApp.Dtos;
 using Fonour.Application.RoleApp.Dtos;
+using Fonour.Application.UserApp.Dtos;
 using Fonour.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,10 @@ namespace Fonour.Application
                 cfg.CreateMap<Role, RoleDto>();
                 cfg.CreateMap<RoleMenuDto, RoleMenu>();
                 cfg.CreateMap<RoleMenu, RoleMenuDto>();
+                cfg.CreateMap<UserDto, User>();
+                cfg.CreateMap<User, UserDto>();
+                cfg.CreateMap<UserRoleDto, UserRole>();
+                cfg.CreateMap<UserRole, UserRoleDto>();
             });
         }
     }

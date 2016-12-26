@@ -14,7 +14,7 @@ namespace Fonour.EntityFrameworkCore.Repositories
     {
         public UserRepository(FonourDbContext dbcontext) : base(dbcontext)
         {
-            
+
         }
         /// <summary>
         /// 检查用户是存在
@@ -25,6 +25,21 @@ namespace Fonour.EntityFrameworkCore.Repositories
         public User CheckUser(string userName, string password)
         {
             return _dbContext.Set<User>().FirstOrDefault(it => it.UserName == userName && it.Password == password);
+        }
+
+        /// <summary>
+        /// 根据Id获取实体
+        /// </summary>
+        /// <param name="id">Id</param>
+        /// <returns></returns>
+        public User GetWithRoles(Guid id)
+        {
+            var user = _dbContext.Set<User>().FirstOrDefault(it => it.Id == id);
+            if (user != null)
+            {
+                user.UserRoles = _dbContext.Set<UserRole>().Where(it => it.UserId == id).ToList();
+            }
+            return user;
         }
     }
 }
