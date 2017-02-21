@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Fonour.Application.MenuApp.Dtos;
 using Fonour.Application.MenuApp;
 using Fonour.MVC.Models;
+using Microsoft.AspNetCore.Http;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,7 +18,7 @@ namespace Fonour.MVC.Controllers
     public class MenuController : FonourControllerBase
     {
         private readonly IMenuAppService _menuAppService;
-        public MenuController(IMenuAppService menuAppService)
+        public MenuController(IMenuAppService menuAppService, Application.UserApp.IUserAppService userAppService)
         {
             _menuAppService = menuAppService;
         }
@@ -128,5 +129,7 @@ namespace Fonour.MVC.Controllers
             var dto = _menuAppService.Get(id);
             return Json(dto);
         }
+
+       
     }
 }

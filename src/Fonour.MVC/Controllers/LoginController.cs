@@ -37,6 +37,7 @@ namespace Fonour.MVC.Controllers
                 if (user != null)
                 {
                     //记录Session
+                    HttpContext.Session.SetString("CurrentUserId", user.Id.ToString());
                     HttpContext.Session.Set("CurrentUser", ByteConvertHelper.Object2Bytes(user));
                     //跳转到系统首页
                     return RedirectToAction("Index", "Home");

@@ -49,5 +49,12 @@ namespace Fonour.Application.MenuApp
         /// <param name="id">功能Id</param>
         /// <returns></returns>
         MenuDto Get(Guid id);
+        
+        /// <summary>
+        /// 根据用户获取功能菜单
+        /// </summary>
+        /// <param name="userId">用户ID</param>
+        /// <returns></returns>
+        List<MenuDto> GetMenusByUser(Guid userId);
     }
 }

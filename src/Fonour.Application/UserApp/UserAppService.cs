@@ -42,7 +42,8 @@ namespace Fonour.Application.UserApp
         /// <returns></returns>
         public UserDto InsertOrUpdate(UserDto dto)
         {
-            _repository.Delete(dto.Id);
+            if (Get(dto.Id) != null)
+                _repository.Delete(dto.Id);
             var user = _repository.InsertOrUpdate(Mapper.Map<User>(dto));
             return Mapper.Map<UserDto>(user);
         }

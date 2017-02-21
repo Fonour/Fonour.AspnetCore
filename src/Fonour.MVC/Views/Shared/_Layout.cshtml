@@ -4,7 +4,7 @@
 <head>
     <title>权限管理系统</title>
     <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" charset="utf-8" >
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" charset="utf-8">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="~/css/AdminLTE.css">
@@ -211,12 +211,7 @@
                 <!-- /.search form -->
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu">
-                    <li class="header">权限管理</li>
-                    <!-- Optionally, you can add icons to the links -->
-                    <li class="active"><a href="/Department/Index"><i class="fa fa-link"></i> <span>组织机构</span></a></li>
-                    <li><a href="/Role/Index"><i class="fa fa-link"></i> <span>角色管理</span></a></li>
-                    <li><a href="/User/Index"><i class="fa fa-link"></i> <span>用户管理</span></a></li>
-                    <li><a href="/Menu/Index"><i class="fa fa-link"></i> <span>功能管理</span></a></li>
+                    @await Component.InvokeAsync("Navigation");
                     @*<li class="treeview">
                             <a href="#">
                                 <i class="fa fa-link"></i> <span>Multilevel</span>
@@ -238,15 +233,15 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             @*<section class="content-header">
-                <h1>
-                    Page Header
-                    <small>Optional description</small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                    <li class="active">Here</li>
-                </ol>
-            </section>*@
+                    <h1>
+                        Page Header
+                        <small>Optional description</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                        <li class="active">Here</li>
+                    </ol>
+                </section>*@
             <!-- Main content -->
             <section class="content">
                 <!--当创建基于_Layout.cshtml布局页面的视图时，视图的内容会和布局页面合并，视图的内容会渲染呈现在@RenderBody()处-->
@@ -346,4 +341,3 @@
     @RenderSection("scripts", false)
 </body>
 </html>
-
